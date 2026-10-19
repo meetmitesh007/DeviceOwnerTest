@@ -32,25 +32,6 @@ android {
         }
     }
 
-    signingConfigs {
-        // 1. Option with encrypted local credentials
-        //    we need to run /keys/addCredentials.bat or /keys/addCredentials.sh in new machine
-        // 2. Alternatively we could use system variables here (e.g. from CI chain)
-        //    System.getenv("my-key-variable")
-        debug {
-            storeFile file("../keys/TestDebug.keystore")
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-        }
-        release {
-            storeFile file("../keys/TestRelease.keystore")
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-        }
-    }
-
     defaultConfig {
         applicationId "pl.marcinkwasniak.install"
         minSdkVersion minSdk
@@ -68,12 +49,10 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
-            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
